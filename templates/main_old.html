@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Deepfake
+{% endblock %}
+{% block body %}
+<div class="container full-height">
+    <div class="row full-height justify-content-center align-items-center">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="button" class="btn btn-dark">Проверить</button>
+                {% if message %}
+                    <br>
+                    <div>Это {{message.result}}!!</div>
+                    <br>
+                <div>Результат детекции: {{message.scaled}} </div>
+                    <br>
+                                <div>Выполнен за {{message.time_work}} </div>
+                    <br>
+                {% endif %}
+            </form>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
